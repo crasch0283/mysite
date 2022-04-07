@@ -1,0 +1,18 @@
+{% load static %}
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<script src="{% static 'polls/script.ts' %}"></script>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li class="animate__animated animate__bounce"><h3><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></h3></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
